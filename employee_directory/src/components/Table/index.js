@@ -7,7 +7,14 @@ function Table(props) {
     <div className="table">
       {props.employees !== undefined ? (
         props.employees.map((employee) => {
-          <h2>{employee.employee_name}</h2>;
+          return (
+            <wrapper>
+              <table className="">
+                <p>{employee.employee_name}</p>
+                <p>{employee.employee_salary}</p>
+              </table>
+            </wrapper>
+          );
         })
       ) : (
         <h3>Nobody Works Here</h3>

@@ -34,8 +34,8 @@ class List extends Component {
   searchEmployee = (query) => {
     API.search(query).then((res) =>
       this.setState({
-        result: res.data.results,
-        alteredResult: res.data.results,
+        result: res.data.employees,
+        alteredResult: res.data.employees,
       })
     );
   };
