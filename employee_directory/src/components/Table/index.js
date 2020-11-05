@@ -1,39 +1,102 @@
-import React from "react";
+import React, { Component } from "react";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // import Table from "react-bootstrap/Table";
 
-function Table(props) {
-  console.log(props);
-  return (
-    <div className="table">
-      {props.employees !== undefined ? (
-        props.employees.map((employee) => {
-          return (
-            <wrapper>
-              <div className="table ">
+class Employees extends Component {
+  // set state to work with
+  state = {
+    data: [],
+    filterData: [],
+  };
+
+  // handle input search field and update state
+  // this.state.filter to sort the data with the new name
+  {props.employees !== undefined ? (
+    props.employees.map((employee) => {
+  
+  handleSearch = (event) => {
+    event.preventDefault();
+    // console.log(event.target.value);
+    let searchName = event.target.value;
+    // let newName = this.state.data.filter((name) => name.name.first === searchName);
+    let newName = this.state.data.filter(
+      (name) => name.name.first.indexOf(searchName) !== -1
+    );
+    // console.log(newName);
+    this.setState({
+      filterData: newName,
+    });
+  };
+  render() {
+    return (
+      <>
+        <div className="container-fluid">
+          {" "}
+          <div className="row header-row">
+            <div className="col-sm-3" />
+            <div className="col-sm-6 text-center">
+              <h1>Employee Directory</h1>
+              <hr></hr>
+              <h5>Search by first name or sort by clicking on 'Name'</h5>
+            </div>
+          </div>
+        </div>
+        <div className="container-fluid">
+          <div className="row main-page">
+            <div className="col-sm-1" />
+            <div className="col-sm-10 text-center">
+              <div className="search-bar row">
+                <div className="col-sm-3" />
+                <div className="col-sm-6 search-div">
+                  <input
+                    type="text"
+                    class="form-control input-search"
+                    onChange={this.handleSearch}
+                    placeholder="Search for employee"
+                    aria-describedby="inputGroup-sizing-default"
+                  />
+                </div>
+                <div className="col-sm-3" />
+              </div>
+
+              <table className="table table-dark">
                 <thead>
                   <tr>
-                    <th className="col-sm-2">
-                      {/* <td>{props.employees}</td> */}
-                      <td>{props.employees_name}</td>
-                      <td>{props.employee_salary}</td>
-                      {/* <td>{props.employee}</td> */}
+                    <th scope="col" onClick={this.handleSort}>
+                      Name
                     </th>
-
-                    <th>{props.employees_name}</th>
-                    <th>{props.employee_salary}</th>
+                    <th scope="col">Salary</th>
+                    <th scope="col">Email</th>
                   </tr>
                 </thead>
-              </div>
-            </wrapper>
-          );
-        })
-      ) : (
-        <h3>Nobody Works Here</h3>
-      )}
-    </div>
-  );
+                <tbody>
+                  {this.state.filterData.map((user) => {
+                    // console.log(user);
+                    return (
+                      <tr>
+                        <th scope="row">
+                          <img src={user.picture.medium} />
+                        </th>
+                        <td key={Employees.login.uuid}>
+                          {user.name.first + " " + user.name.last}
+                        </td>
+                        <td>{user.phone}</td>
+                        <td>
+                          <a href="">{user.email}</a>
+                        </td>
+                        <td>{user.dob.age}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 }
-export default Table;
+export default Employees;
