@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-// import Table from "react-bootstrap/Table";
+import list from "../pages/List.js";
+import Table from "react-bootstrap/Table";
 
 class Employees extends Component {
   // set state to work with
@@ -13,9 +13,7 @@ class Employees extends Component {
 
   // handle input search field and update state
   // this.state.filter to sort the data with the new name
-  {props.employees !== undefined ? (
-    props.employees.map((employee) => {
-  
+
   handleSearch = (event) => {
     event.preventDefault();
     // console.log(event.target.value);
@@ -34,7 +32,7 @@ class Employees extends Component {
       <>
         <div className="container-fluid">
           {" "}
-          <div className="row header-row">
+          <div className="row header-row table">
             <div className="col-sm-3" />
             <div className="col-sm-6 text-center">
               <h1>Employee Directory</h1>
@@ -72,21 +70,16 @@ class Employees extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.filterData.map((user) => {
+                  {this.state.filterData.map((list) => {
                     // console.log(user);
                     return (
                       <tr>
-                        <th scope="row">
-                          <img src={user.picture.medium} />
-                        </th>
-                        <td key={Employees.login.uuid}>
-                          {user.name.first + " " + user.name.last}
-                        </td>
-                        <td>{user.phone}</td>
+                        <td key={Employees}>{employee_name}</td>
+                        <td>{id}</td>
                         <td>
-                          <a href="">{user.email}</a>
+                          <a href="">{id}</a>
                         </td>
-                        <td>{user.dob.age}</td>
+                        <td>{employee_email}</td>
                       </tr>
                     );
                   })}

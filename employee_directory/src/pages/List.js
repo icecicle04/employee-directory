@@ -14,7 +14,8 @@ class List extends Component {
   componentDidMount() {
     API.getAllEmployees()
       .then((res) => {
-        console.log(res.data.data);
+        const employees = res.data.data;
+        console.log(employees);
         this.setState({ employees: res.data.data });
       })
       .catch((err) => console.log(err));
@@ -34,8 +35,8 @@ class List extends Component {
   searchEmployee = (query) => {
     API.search(query).then((res) =>
       this.setState({
-        result: res.data.employees,
-        alteredResult: res.data.employees,
+        result: res.data.data,
+        alteredResult: res.data.data,
       })
     );
   };
@@ -48,7 +49,7 @@ class List extends Component {
   render() {
     return (
       <div>
-        <Table employees={this.state.employees} />
+        <Table employees={this.state.employee_name} />
         {/* <SearchResults results={this.state.results} /> */}
       </div>
     );
