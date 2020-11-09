@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import list from "../pages/List.js";
+// import list from "../pages/List.js";
 import Table from "react-bootstrap/Table";
 
 class Employees extends Component {
@@ -74,12 +74,12 @@ class Employees extends Component {
                     // console.log(user);
                     return (
                       <tr>
-                        <td key={Employees}>{employee_name}</td>
-                        <td>{id}</td>
+                        {/* <td key={Employees}>{employee_name}</td> */}
+                        {/* <td>{id}</td>
                         <td>
                           <a href="">{id}</a>
                         </td>
-                        <td>{employee_email}</td>
+                        <td>{employee_email}</td> */}
                       </tr>
                     );
                   })}
